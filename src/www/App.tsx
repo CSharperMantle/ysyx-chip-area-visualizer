@@ -388,8 +388,8 @@ const App = () => {
                 .
               </Typography>
             </Stack>
-            <LicenseSection />
           </Container>
+          <LicenseSection />
         </Stack>
       </Container>
       <UpdateDialog
