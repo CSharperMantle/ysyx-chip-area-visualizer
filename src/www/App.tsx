@@ -233,7 +233,7 @@ const App = () => {
                       setFileType(ev.target.value)
                     }}
                   >
-                    <MenuItem value={"txt"}>yosys_stats.txt</MenuItem>
+                    <MenuItem value={"txt"}>synth_stat.txt</MenuItem>
                     <MenuItem value={"json"}>JSON</MenuItem>
                   </Select>
                 </FormControl>
