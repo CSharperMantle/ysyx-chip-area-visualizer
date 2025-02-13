@@ -53,9 +53,9 @@ const UpdateDialog = (props: { open: boolean; onConfirm: () => void; onCancel: (
   )
 }
 
-const LicenseSection = () => {
+const LicenseText = () => {
   return (
-    <Stack direction="column" spacing={2} component="section">
+    <Stack direction="column" spacing={2}>
       <Typography variant="h5" component="h2">
         License
       </Typography>
@@ -389,7 +389,9 @@ const App = () => {
               </Typography>
             </Stack>
           </Container>
-          <LicenseSection />
+          <Container maxWidth="md" component="section">
+            <LicenseText />
+          </Container>
         </Stack>
       </Container>
       <UpdateDialog
