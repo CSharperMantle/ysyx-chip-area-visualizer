@@ -20,7 +20,7 @@ export default defineConfig({
         description: "Visualizer for OSCPU/yosys-sta area reports",
         theme_color: "#2196f3",
         display: "standalone",
-        orientation: "any",
+        orientation: "landscape",
         icons: [
           {
             src: "./web-app-manifest-192x192.png",
