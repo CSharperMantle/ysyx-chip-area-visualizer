@@ -1,0 +1,51 @@
+{
+  "name": "ysyx-chip-area-visualizer",
+  "description": "Visualizer for OSCPU/yosys-sta area reports",
+  "license": "MulanPSL-2.0",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build-pages": "tsc -b && vite build --base=/ysyx-chip-area-visualizer/",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource-variable/noto-sans": "^5.1.1",
+    "@mui/icons-material": "^6.4.4",
+    "@mui/material": "^6.4.4",
+    "d3": "^7.9.0",
+    "lodash-es": "^4.17.21",
+    "notistack": "^3.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "toposort": "^2.0.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/d3": "^7.4.3",
+    "@types/lodash-es": "^4",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/toposort": "^2.0.7",
+    "@vitejs/plugin-react-swc": "^3.7.2",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "rollup": "^4.34.6",
+    "sass-embedded": "^1.83.4",
+    "typescript": "~5.7.3",
+    "typescript-eslint": "^8.22.0",
+    "vite": "^6.0.11",
+    "vite-plugin-pwa": "^0.21.1",
+    "workbox-window": "^7.3.0"
+  },
+  "packageManager": "yarn@4.6.0"
+}
