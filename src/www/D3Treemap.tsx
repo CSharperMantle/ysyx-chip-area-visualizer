@@ -147,7 +147,14 @@ const D3Treemap = (props: {
               <clipPath id={clipId}>
                 <use xlinkHref={new URL(`#${leafId}`, location.toString()).toString()} />
               </clipPath>
-              <text clipPath={clipId} x={3} fill={theme.palette.getContrastText(rectBgColor)}>
+              <text
+                clipPath={clipId}
+                x={3}
+                fill={theme.palette.getContrastText(rectBgColor)}
+                style={{
+                  userSelect: "none",
+                }}
+              >
                 {getNamePath(node).map((name, i) => {
                   return (
                     <tspan key={i} x={3} dy="1em">
