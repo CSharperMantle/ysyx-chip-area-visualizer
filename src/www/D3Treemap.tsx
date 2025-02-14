@@ -178,7 +178,7 @@ const D3Treemap = (props: {
 
       <DetailsDrawer
         open={detailsOpen}
-        node={detailsNode!}
+        node={detailsNode}
         onClose={() => {
           setDetailsOpen(false)
         }}
