@@ -54,7 +54,7 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
                   </TableCell>
                 </TableRow>
               ) : (
-                sortBy(Object.entries(props.node.coalescedPrimitives), [(v) => v[1]]).map(
+                sortBy(Object.entries(props.node.coalescedPrimitives), [(v) => -v[1]]).map(
                   ([name, count]) => (
                     <TableRow
                       key={name}
