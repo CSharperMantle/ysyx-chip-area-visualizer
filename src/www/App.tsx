@@ -72,23 +72,23 @@ const LicenseText = () => {
         {">"}.
       </Typography>
       <Typography variant="body1" component="p">
-        <code>ysyx-chip-area-visualizer</code> is licensed under Mulan PSL v2. You can use this
-        software according to the terms and conditions of the Mulan PSL v2.
+        This program is free software: you can redistribute it and/or modify it under the terms of
+        the GNU Affero General Public License as published by the Free Software Foundation, either
+        version 3 of the License, or (at your option) any later version.
       </Typography>
       <Typography variant="body1" component="p">
-        You may obtain a copy of Mulan PSL v2 at:{" "}
-        <Link href="https://license.coscl.org.cn/MulanPSL2" target="_blank" rel="noopener">
-          https://license.coscl.org.cn/MulanPSL2
+        This program is distributed in the hope that it will be useful, but{" "}
+        <strong>WITHOUT ANY WARRANTY</strong>; without even the implied warranty of{" "}
+        <strong>MERCHANTABILITY</strong> or <strong>FITNESS FOR A PARTICULAR PURPOSE</strong>. See
+        the GNU Affero General Public License for more details.
+      </Typography>
+      <Typography variant="body1" component="p">
+        You should have received a copy of the GNU Affero General Public License along with this
+        program. If not, see{" "}
+        <Link href="https://www.gnu.org/licenses/" target="_blank" rel="noopener">
+          https://www.gnu.org/licenses/
         </Link>
         .
-      </Typography>
-      <Typography variant="body1" component="p">
-        <strong>
-          THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER
-          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT
-          FOR A PARTICULAR PURPOSE.
-        </strong>{" "}
-        See the Mulan PSL v2 for more details.
       </Typography>
     </Stack>
   )
