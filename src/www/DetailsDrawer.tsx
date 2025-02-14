@@ -1,3 +1,5 @@
+import { sortBy } from "lodash-es"
+
 import { useTheme } from "@mui/material"
 import Divider from "@mui/material/Divider"
 import Drawer from "@mui/material/Drawer"
@@ -52,19 +54,21 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
                   </TableCell>
                 </TableRow>
               ) : (
-                Object.entries(props.node.coalescedPrimitives).map(([name, count]) => (
-                  <TableRow
-                    key={name}
-                    sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
-                    }}
-                  >
-                    <TableCell component="th" scope="row">
-                      <code>{name}</code>
-                    </TableCell>
-                    <TableCell>{count}</TableCell>
-                  </TableRow>
-                ))
+                sortBy(Object.entries(props.node.coalescedPrimitives), [(v) => v[1]]).map(
+                  ([name, count]) => (
+                    <TableRow
+                      key={name}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        <code>{name}</code>
+                      </TableCell>
+                      <TableCell>{count}</TableCell>
+                    </TableRow>
+                  )
+                )
               )}
             </TableBody>
           </Table>
