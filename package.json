@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build-pages": "tsc -b && vite build --base=/ysyx-chip-area-visualizer/",
+    "build-pages": "tsc -b && vite build --base=https://csmantle.top/ysyx-chip-area-visualizer/",
     "lint": "eslint .",
     "preview": "vite preview"
   },
