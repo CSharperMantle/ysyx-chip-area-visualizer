@@ -1,6 +1,6 @@
 {
   "name": "ysyx-chip-area-visualizer",
-  "description": "Visualizer for OSCPU/yosys-sta area reports",
+  "description": "Visualize Yosys `stat` reports",
   "license": "MulanPSL-2.0",
   "private": true,
   "version": "0.1.0",

@@ -181,7 +181,10 @@ const App = () => {
           <Container maxWidth="md" component="section">
             <Stack direction="column" spacing={2}>
               <Typography variant="body1" component="p">
-                This app parses TXT or JSON output of Yosys{" "}
+                This app parses TXT or JSON output of{" "}
+                <Link href="https://github.com/YosysHQ/yosys" target="_blank" rel="noopener">
+                  Yosys
+                </Link>{" "}
                 <Link
                   href="https://yosyshq.readthedocs.io/projects/yosys/en/stable/cmd/stat.html"
                   target="_blank"
@@ -195,13 +198,10 @@ const App = () => {
                   target="_blank"
                   rel="noopener"
                 >
-                  my <strong>Y</strong>SYX project
+                  my YSYX project
                 </Link>
-                , it can be generalized to any compatible{" "}
-                <Link href="https://github.com/YosysHQ/yosys" target="_blank" rel="noopener">
-                  <strong>Y</strong>osys
-                </Link>{" "}
-                outputs.
+                , it can be generalized to any compatible Yosys <code>stat</code> outputs. So, the
+                "Y" in the name stands for both <strong>Y</strong>SYX and <strong>Y</strong>osys.
               </Typography>
               <Typography variant="body1" component="p">
                 Click the cells in the generated graph to display detailed information.

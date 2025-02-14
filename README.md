@@ -1,6 +1,6 @@
 # ysyx-chip-area-visualizer
 
-Y Chip Area Visualizer: Visualize [OSCPU/yosys-sta](https://github.com/OSCPU/yosys-sta) area reports.
+Y Chip Area Visualizer: Visualize [Yosys](https://github.com/YosysHQ/yosys) [`stat`](https://yosyshq.readthedocs.io/projects/yosys/en/stable/cmd/stat.html) reports.
 
 Originally designed for [my **Y**SYX project](https://github.com/CSharperMantle/ics2023), it can be generalized to any compatible [**Y**osys](https://github.com/YosysHQ/yosys) outputs. Currently this app accepts:
 
