@@ -108,10 +108,10 @@ const App = () => {
       case "none":
         func = (x) => x
         break
-      case "log2":
-        func = Math.log2
+      case "log10":
+        func = Math.log10
         break
-      case "log":
+      case "ln":
         func = Math.log
         break
       case "exp":
@@ -318,8 +318,8 @@ const App = () => {
                     }}
                   >
                     <MenuItem value={"none"}>None</MenuItem>
-                    <MenuItem value={"log2"}>Log 2</MenuItem>
-                    <MenuItem value={"log"}>Log e</MenuItem>
+                    <MenuItem value={"log10"}>Log 10</MenuItem>
+                    <MenuItem value={"ln"}>Ln</MenuItem>
                     <MenuItem value={"exp"}>Exponential</MenuItem>
                   </Select>
                 </FormControl>
@@ -334,7 +334,7 @@ const App = () => {
                   fullWidth
                   label="Exponent"
                   type="number"
-                  variant="standard"
+                  variant="filled"
                   value={scaleExp}
                   disabled={scaleFuncSel !== "exp"}
                   onChange={(ev) => {
