@@ -1,7 +1,7 @@
 import * as d3 from "d3"
 import { useId, useMemo, useState } from "react"
 
-import { useTheme } from "@mui/material"
+import { styled, useTheme } from "@mui/material"
 
 import { ConvertedTreeNode } from "../convert"
 import DetailsDrawer, { DetailsNode } from "./DetailsDrawer"
@@ -16,6 +16,18 @@ function scaleAdjust(tree: ConvertedTreeNode, f: (x: number) => number): Convert
       return { ...tree, children: tree.children.map((c) => scaleAdjust(c, f)) }
   }
 }
+
+const HoverSVGGroup = styled("g")(({ theme }) => ({
+  "& > rect": {
+    fill: theme.palette.mode === "dark" ? theme.palette.grey["800"] : theme.palette.grey["300"],
+    transition: theme.transitions.create("fill", {
+      duration: theme.transitions.duration.shorter,
+    }),
+  },
+  "&:hover > rect": {
+    fill: theme.palette.mode === "dark" ? theme.palette.grey["700"] : theme.palette.grey["200"],
+  },
+}))
 
 const D3Treemap = (props: {
   data: ConvertedTreeNode
@@ -78,10 +90,6 @@ const D3Treemap = (props: {
 
   const svgBorderColor =
     theme.palette.mode === "dark" ? theme.palette.grey["400"] : theme.palette.grey["900"]
-  const rectBgColor =
-    theme.palette.mode === "dark" ? theme.palette.grey["800"] : theme.palette.grey["300"]
-  const rectHoverBgColor =
-    theme.palette.mode === "dark" ? theme.palette.grey["600"] : theme.palette.grey["100"]
 
   return (
     <>
@@ -102,8 +110,6 @@ const D3Treemap = (props: {
             yScale(node.y1) - yScale(node.y0),
           ]
 
-          const [hover, setHover] = useState(false)
-
           const leafId = useId()
           const clipId = useId()
 
@@ -119,15 +125,9 @@ const D3Treemap = (props: {
           }
 
           return (
-            <g
+            <HoverSVGGroup
               key={i}
               transform={`translate(${x},${y})`}
-              onMouseEnter={() => {
-                setHover(true)
-              }}
-              onMouseLeave={() => {
-                setHover(false)
-              }}
               onClick={() => {
                 setDetailsNode({ ...node.data, path: getNamePath(node) })
                 setDetailsOpen(true)
@@ -137,20 +137,14 @@ const D3Treemap = (props: {
                 {getNamePath(node).join("/")}
                 {area ? ` (Area: ${area})` : null}
               </title>
-              <rect
-                id={leafId}
-                fill={hover ? rectHoverBgColor : rectBgColor}
-                stroke={svgBorderColor}
-                width={rectWidth}
-                height={rectHeight}
-              />
+              <rect id={leafId} stroke={svgBorderColor} width={rectWidth} height={rectHeight} />
               <clipPath id={clipId}>
                 <use xlinkHref={new URL(`#${leafId}`, location.toString()).toString()} />
               </clipPath>
               <text
                 clipPath={clipId}
                 x={3}
-                fill={theme.palette.getContrastText(rectBgColor)}
+                fill={theme.palette.text.primary}
                 style={{
                   userSelect: "none",
                 }}
@@ -171,7 +165,7 @@ const D3Treemap = (props: {
                   </>
                 ) : null}
               </text>
-            </g>
+            </HoverSVGGroup>
           )
         })}
       </svg>
