@@ -76,6 +76,13 @@ const D3Treemap = (props: {
   const [detailsOpen, setDetailsOpen] = useState(false)
   const [detailsNode, setDetailsNode] = useState<DetailsNode | null>(null)
 
+  const svgBorderColor =
+    theme.palette.mode === "dark" ? theme.palette.grey["400"] : theme.palette.grey["900"]
+  const rectBgColor =
+    theme.palette.mode === "dark" ? theme.palette.grey["800"] : theme.palette.grey["300"]
+  const rectHoverBgColor =
+    theme.palette.mode === "dark" ? theme.palette.grey["600"] : theme.palette.grey["100"]
+
   return (
     <>
       <svg
@@ -83,7 +90,9 @@ const D3Treemap = (props: {
         width="100%"
         style={{
           font: "0.8rem sans-serif",
-          border: "1px black solid",
+          borderWidth: "1px",
+          borderStyle: "solid",
+          borderColor: svgBorderColor,
         }}
       >
         {(root.leaves() ?? []).map((node, i) => {
@@ -97,8 +106,6 @@ const D3Treemap = (props: {
 
           const leafId = useId()
           const clipId = useId()
-
-          const rectBgColor = hover ? theme.palette.grey["A200"] : theme.palette.grey["A400"]
 
           let area: number | null = null
           switch (node.data.type) {
@@ -132,8 +139,8 @@ const D3Treemap = (props: {
               </title>
               <rect
                 id={leafId}
-                fill={rectBgColor}
-                stroke={theme.palette.common.black}
+                fill={hover ? rectHoverBgColor : rectBgColor}
+                stroke={svgBorderColor}
                 width={rectWidth}
                 height={rectHeight}
               />

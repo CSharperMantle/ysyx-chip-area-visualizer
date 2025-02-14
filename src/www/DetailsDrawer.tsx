@@ -1,3 +1,4 @@
+import { useTheme } from "@mui/material"
 import Divider from "@mui/material/Divider"
 import Drawer from "@mui/material/Drawer"
 import Stack from "@mui/material/Stack"
@@ -16,6 +17,8 @@ export type DetailsNode = ConvertedTreeNode & {
 }
 
 const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose: () => void }) => {
+  const theme = useTheme()
+
   const areaDisplay =
     props.node && props.node.type !== "internal" ? (
       <Typography variant="body1" component="p">
@@ -74,14 +77,12 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
       <Stack
         direction="column"
         spacing={2}
-        padding="2rem"
-        height="100%"
         component="section"
         role="presentation"
-        sx={{ width: 300 }}
+        sx={{ width: 300, height: "100%", padding: theme.spacing(2) }}
       >
         <Typography variant="h4" component="h2">
-          Module details
+          Details
         </Typography>
         <Divider />
         <Typography variant="body1" component="p">

@@ -3,6 +3,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FileOpenIcon from "@mui/icons-material/FileOpen"
 import PieChartIcon from "@mui/icons-material/PieChart"
+import { styled, useTheme } from "@mui/material"
 import Button from "@mui/material/Button"
 import Container from "@mui/material/Container"
 import Dialog from "@mui/material/Dialog"
@@ -30,6 +31,12 @@ import { useRegisterSW } from "virtual:pwa-register/react"
 import { ConvertedTreeNode, convertParsedModules } from "../convert"
 import { ParsedModule, parseTextStats, parseYosysJsonStats } from "../parse"
 import D3Treemap from "./D3Treemap"
+
+const CenteringGrid = styled(Grid)(() => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+}))
 
 const UpdateDialog = (props: { open: boolean; onConfirm: () => void; onCancel: () => void }) => {
   const titleId = useId()
@@ -88,6 +95,8 @@ const LicenseText = () => {
 }
 
 const App = () => {
+  const theme = useTheme()
+
   const [treeData, setTreeData] = useState<ConvertedTreeNode | null>(null)
 
   const { enqueueSnackbar } = useSnackbar()
@@ -149,11 +158,24 @@ const App = () => {
       <Container
         maxWidth="lg"
         sx={{
-          padding: "1rem",
+          padding: theme.spacing(3),
         }}
       >
-        <Stack direction="column" spacing={4} component="main" alignItems="center">
-          <Typography variant="h4" component="h1" textAlign="center">
+        <Stack
+          direction="column"
+          spacing={4}
+          component="main"
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="h4"
+            component="h1"
+            sx={{
+              textAlign: "center",
+            }}
+          >
             Y Chip Area Visualizer
           </Typography>
           <Container maxWidth="md" component="section">
@@ -193,10 +215,12 @@ const App = () => {
               columnSpacing={2}
               rowSpacing={1}
               columns={{ xs: 4, md: 8 }}
-              alignItems="center"
-              justifyContent="space-between"
+              sx={{
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              <Grid display="flex" justifyContent="center" alignItems="center" size={1}>
+              <CenteringGrid size={1}>
                 <Tooltip title="Open">
                   <IconButton size="large" onClick={() => inputRef.current?.click()}>
                     <FileOpenIcon />
@@ -213,8 +237,8 @@ const App = () => {
                     />
                   </IconButton>
                 </Tooltip>
-              </Grid>
-              <Grid display="flex" justifyContent="center" alignItems="center" size={3}>
+              </CenteringGrid>
+              <CenteringGrid size={3}>
                 <TextField
                   fullWidth
                   label="File name"
@@ -230,8 +254,8 @@ const App = () => {
                   }}
                   variant="filled"
                 />
-              </Grid>
-              <Grid display="flex" justifyContent="center" alignItems="center" size={2}>
+              </CenteringGrid>
+              <CenteringGrid size={2}>
                 <FormControl fullWidth variant="filled">
                   <InputLabel id={fileTypeInputLabelId}>File type</InputLabel>
                   <Select
@@ -245,8 +269,8 @@ const App = () => {
                     <MenuItem value={"json"}>JSON</MenuItem>
                   </Select>
                 </FormControl>
-              </Grid>
-              <Grid display="flex" justifyContent="center" alignItems="center" size={1}>
+              </CenteringGrid>
+              <CenteringGrid size={1}>
                 <Tooltip title="Graph">
                   <IconButton
                     size="large"
@@ -284,8 +308,8 @@ const App = () => {
                     <PieChartIcon />
                   </IconButton>
                 </Tooltip>
-              </Grid>
-              <Grid display="flex" justifyContent="center" alignItems="center" size={1}>
+              </CenteringGrid>
+              <CenteringGrid size={1}>
                 <Tooltip title="Clear">
                   <IconButton
                     size="large"
@@ -301,13 +325,8 @@ const App = () => {
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>
-              </Grid>
-              <Grid
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                size={{ xs: 2, md: 4 }}
-              >
+              </CenteringGrid>
+              <CenteringGrid size={{ xs: 2, md: 4 }}>
                 <FormControl fullWidth variant="filled">
                   <InputLabel id={scaleCorrectionLabelId}>Scale correction</InputLabel>
                   <Select
@@ -323,13 +342,8 @@ const App = () => {
                     <MenuItem value={"exp"}>Exponential</MenuItem>
                   </Select>
                 </FormControl>
-              </Grid>
-              <Grid
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                size={{ xs: 2, md: 4 }}
-              >
+              </CenteringGrid>
+              <CenteringGrid size={{ xs: 2, md: 4 }}>
                 <TextField
                   fullWidth
                   label="Exponent"
@@ -349,7 +363,7 @@ const App = () => {
                     },
                   }}
                 />
-              </Grid>
+              </CenteringGrid>
             </Grid>
           </Container>
           <Container
