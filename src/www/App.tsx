@@ -80,7 +80,7 @@ const LicenseText = () => {
           THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER
           EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT
           FOR A PARTICULAR PURPOSE.
-        </strong>
+        </strong>{" "}
         See the Mulan PSL v2 for more details.
       </Typography>
     </Stack>
@@ -154,24 +154,32 @@ const App = () => {
       >
         <Stack direction="column" spacing={4} component="main" alignItems="center">
           <Typography variant="h4" component="h1" textAlign="center">
-            ysyx-chip-area-visualizer
+            Y Chip Area Visualizer
           </Typography>
           <Container maxWidth="md" component="section">
             <Stack direction="column" spacing={2}>
               <Typography variant="body1" component="p">
-                This app parses TXT or JSON output of{" "}
-                <Link href="https://github.com/OSCPU/yosys-sta" target="_blank" rel="noopener">
-                  yosys-sta
-                </Link>
-                , and visualizes the component area in a treemap. Originally developed for{" "}
+                This app parses TXT or JSON output of Yosys{" "}
+                <Link
+                  href="https://yosyshq.readthedocs.io/projects/yosys/en/stable/cmd/stat.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <code>stat</code>
+                </Link>{" "}
+                command, and visualizes the component area in a treemap. Originally developed for{" "}
                 <Link
                   href="https://github.com/CSharperMantle/ics2023"
                   target="_blank"
                   rel="noopener"
                 >
-                  my YSYX project
+                  my <strong>Y</strong>SYX project
                 </Link>
-                , it can be generalized to arbitrary compatible inputs.
+                , it can be generalized to any compatible{" "}
+                <Link href="https://github.com/YosysHQ/yosys" target="_blank" rel="noopener">
+                  <strong>Y</strong>osys
+                </Link>{" "}
+                outputs.
               </Typography>
               <Typography variant="body1" component="p">
                 Click the cells in the generated graph to display detailed information.

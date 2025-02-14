@@ -15,8 +15,8 @@ export default defineConfig({
         navigateFallbackDenylist: [/^.*\.map$/],
       },
       manifest: {
-        name: "ysyx-chip-area-visualizer",
-        short_name: "chipareavis",
+        name: "Y Chip Area Visualizer",
+        short_name: "YChipAreaVis",
         description: "Visualizer for OSCPU/yosys-sta area reports",
         theme_color: "#2196f3",
         display: "standalone",
