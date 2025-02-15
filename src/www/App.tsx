@@ -403,7 +403,21 @@ const App = () => {
                 <Link href="https://d3js.org/" target="_blank" rel="noopener">
                   D3.js
                 </Link>{" "}
-                to visualize the tree.
+                for visualization, and{" "}
+                <Link href="https://react.dev/" target="_blank" rel="noopener">
+                  React
+                </Link>{" "}
+                for DOM manipulation. The animations are powered by{" "}
+                <Link
+                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  CSS transitions
+                </Link>{" "}
+                in SVG, without using third-party animation libraries. Aside from its primary
+                functionalities, this app can also serve as an example of writing modern
+                visualizations that are both declarative and beautiful.
               </Typography>
               <Typography variant="body1" component="p">
                 The source code for this app is available at{" "}

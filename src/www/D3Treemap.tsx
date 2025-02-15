@@ -38,7 +38,6 @@ const AnimatedSVGGroup = styled("g")(({ theme }) => ({
 
 const TreemapNode = (props: {
   node: NodeType
-  i: number
   xScale: d3.ScaleContinuousNumeric<number, number, never>
   yScale: d3.ScaleContinuousNumeric<number, number, never>
   setDetailsNode: (x: DetailsNode | null) => void
@@ -77,7 +76,6 @@ const TreemapNode = (props: {
 
   return (
     <AnimatedSVGGroup
-      key={props.i}
       transform={`translate(${x},${y})`}
       onClick={() => {
         props.setDetailsNode({ ...props.node.data, path: getNamePath(props.node) })
@@ -100,13 +98,11 @@ const TreemapNode = (props: {
           userSelect: "none",
         }}
       >
-        {getNamePath(props.node).map((name, i) => {
-          return (
-            <tspan key={i} x={3} dy="1em">
-              {name}
-            </tspan>
-          )
-        })}
+        {getNamePath(props.node).map((name, i) => (
+          <tspan key={i} x={3} dy="1em">
+            {name}
+          </tspan>
+        ))}
         {area ? (
           <>
             <tspan x={3} dy="2em">
@@ -188,13 +184,12 @@ const D3Treemap = (props: {
       >
         {(root.leaves() ?? []).map((node, i) => (
           <TreemapNode
+            key={i}
             node={node}
-            i={i}
             xScale={xScale}
             yScale={yScale}
             setDetailsNode={setDetailsNode}
             setDetailsOpen={setDetailsOpen}
-            key={i}
           />
         ))}
       </svg>

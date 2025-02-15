@@ -14,6 +14,8 @@ tee -o synth_stat.txt stat -liberty $LIB_FILE
 tee -o input.json stat -liberty $LIB_FILE -json
 ```
 
+This app uses [D3.js](https://d3js.org/) for visualization, and [React](https://react.dev/) for DOM manipulation. The animations are powered by [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions) in SVG, without using third-party animation libraries. It can also serve as an example of writing modern, declarative visualizations combining D3.js and JSX.
+
 ## Build
 
 ```sh
