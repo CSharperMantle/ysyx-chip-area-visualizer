@@ -9,7 +9,7 @@ import { SnackbarProvider } from "notistack"
 import App from "./App.tsx"
 import theme from "./theme.ts"
 
-import "@fontsource-variable/noto-sans/wght.css"
+import "./fonts.scss"
 import "./index.scss"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, react/display-name

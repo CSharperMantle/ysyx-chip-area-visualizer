@@ -1530,10 +1530,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource-variable/noto-sans@npm:^5.1.1":
+"@fontsource-variable/source-code-pro@npm:^5.1.1":
   version: 5.1.1
-  resolution: "@fontsource-variable/noto-sans@npm:5.1.1"
-  checksum: 10c0/0341668dc3c3f24d5f358d7a2cd7f374385ed6742dace3fd0aa735a46af4747bec129798919827cf42e349e584199329770aac7fb5742d6e8e0fdcf820999cd4
+  resolution: "@fontsource-variable/source-code-pro@npm:5.1.1"
+  checksum: 10c0/b0768244b0e3305823dde2ed49d6f2bfbd925d6a82d9a010c3c844826bb81c30b5c5c0ef0f5df1e37da8cf30fabc2797a2f7528d5ca4bf88904326ca5b4b7ca4
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/source-sans-3@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@fontsource-variable/source-sans-3@npm:5.1.1"
+  checksum: 10c0/a7552fb77f4844b838de55b57d923959ffbce1e071f4e3d9c0644c3e59f416183a1add59445e750d12aa6e38b937c40115b103af52c1e829b020dfdf9da55100
   languageName: node
   linkType: hard
 
@@ -7697,7 +7704,8 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.20.0"
-    "@fontsource-variable/noto-sans": "npm:^5.1.1"
+    "@fontsource-variable/source-code-pro": "npm:^5.1.1"
+    "@fontsource-variable/source-sans-3": "npm:^5.1.1"
     "@mui/icons-material": "npm:^6.4.4"
     "@mui/material": "npm:^6.4.4"
     "@types/d3": "npm:^7.4.3"
