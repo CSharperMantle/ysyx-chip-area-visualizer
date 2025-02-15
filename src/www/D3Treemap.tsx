@@ -21,6 +21,7 @@ function scaleAdjust(tree: ConvertedTreeNode, f: (x: number) => number): Convert
 
 const AnimatedSVGGroup = styled("g")(({ theme }) => ({
   "&": {
+    cursor: "pointer",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.standard,
     }),
