@@ -94,10 +94,17 @@ const LicenseText = () => {
   )
 }
 
+const EmptyGraphRoot: ConvertedTreeNode = {
+  type: "leaf",
+  count: 0,
+  size: 0,
+  name: "(empty)",
+}
+
 const App = () => {
   const theme = useTheme()
 
-  const [treeData, setTreeData] = useState<ConvertedTreeNode | null>(null)
+  const [treeData, setTreeData] = useState<ConvertedTreeNode>(EmptyGraphRoot)
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -107,6 +114,7 @@ const App = () => {
   const [fileName, setFileName] = useState<string>("")
   const [fileType, setFileType] = useState("txt")
   const [attempted, setAttempted] = useState(false)
+  const [errored, setErrored] = useState(false)
 
   const [scaleFuncSel, setScaleFuncSel] = useState("none")
   const [scaleExp, setScaleExp] = useState(0.75)
@@ -131,6 +139,48 @@ const App = () => {
     }
     return func
   }, [scaleFuncSel, scaleExp])
+
+  async function drawGraph() {
+    setAttempted(true)
+    try {
+      const inputText = await inputRef.current?.files?.item(0)?.text()
+      if (!inputText) {
+        throw new Error("Failed to fetch input file content.")
+      }
+      let parsed: ParsedModule[]
+      switch (fileType) {
+        case "txt":
+          parsed = parseTextStats(inputText)
+          break
+        case "json":
+          parsed = parseYosysJsonStats(inputText)
+          break
+        default:
+          throw new Error(`Invalid file type: ${fileType}`)
+      }
+      const converted = convertParsedModules(parsed, true)
+      setTreeData(converted)
+      setErrored(false)
+    } catch (err) {
+      setErrored(true)
+      console.error(err)
+      err = err instanceof Error ? err : new Error(`${err}`)
+      enqueueSnackbar({
+        message: `${err}`,
+        variant: "error",
+      })
+    }
+  }
+
+  async function clearGraph() {
+    setAttempted(false)
+    setErrored(false)
+    setFileName("")
+    setTreeData(EmptyGraphRoot)
+    if (inputRef.current) {
+      inputRef.current.value = ""
+    }
+  }
 
   const {
     offlineReady: [offlineReady, setOfflineReady],
@@ -228,8 +278,9 @@ const App = () => {
                       type="file"
                       accept={fileType === "txt" ? ".txt,text/plain" : ".json,application/json"}
                       ref={inputRef}
-                      onChange={(ev) => {
+                      onChange={async (ev) => {
                         setFileName(ev.target.files?.[0]?.name ?? "")
+                        await drawGraph()
                       }}
                       style={{
                         display: "none",
@@ -243,7 +294,7 @@ const App = () => {
                   fullWidth
                   label="File name"
                   value={fileName}
-                  error={attempted && !fileName}
+                  error={attempted && errored}
                   slotProps={{
                     input: {
                       readOnly: true,
@@ -272,56 +323,14 @@ const App = () => {
               </CenteringGrid>
               <CenteringGrid size={1}>
                 <Tooltip title="Graph">
-                  <IconButton
-                    size="large"
-                    color="primary"
-                    onClick={async () => {
-                      setAttempted(true)
-                      try {
-                        const inputText = await inputRef.current?.files?.item(0)?.text()
-                        if (!inputText) {
-                          throw new Error("Failed to fetch input file content.")
-                        }
-                        let parsed: ParsedModule[]
-                        switch (fileType) {
-                          case "txt":
-                            parsed = parseTextStats(inputText)
-                            break
-                          case "json":
-                            parsed = parseYosysJsonStats(inputText)
-                            break
-                          default:
-                            throw new Error(`Invalid file type: ${fileType}`)
-                        }
-                        const converted = convertParsedModules(parsed, true)
-                        setTreeData(converted)
-                      } catch (err) {
-                        console.error(err)
-                        err = err instanceof Error ? err : new Error(`${err}`)
-                        enqueueSnackbar({
-                          message: `${err}`,
-                          variant: "error",
-                        })
-                      }
-                    }}
-                  >
+                  <IconButton size="large" color="primary" onClick={drawGraph}>
                     <PieChartIcon />
                   </IconButton>
                 </Tooltip>
               </CenteringGrid>
               <CenteringGrid size={1}>
                 <Tooltip title="Clear">
-                  <IconButton
-                    size="large"
-                    onClick={() => {
-                      setAttempted(false)
-                      setFileName("")
-                      setTreeData(null)
-                      if (inputRef.current) {
-                        inputRef.current.value = ""
-                      }
-                    }}
-                  >
+                  <IconButton size="large" onClick={clearGraph}>
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>
@@ -373,16 +382,14 @@ const App = () => {
               overflowX: "scroll",
             }}
           >
-            {treeData ? (
-              <Paper
-                elevation={2}
-                sx={{
-                  padding: "0.5rem",
-                }}
-              >
-                <D3Treemap data={treeData} scaleFunc={scaleFunc} width={1280} height={720} />
-              </Paper>
-            ) : null}
+            <Paper
+              elevation={2}
+              sx={{
+                padding: "0.5rem",
+              }}
+            >
+              <D3Treemap data={treeData} scaleFunc={scaleFunc} width={1280} height={720} />
+            </Paper>
           </Container>
           <Divider />
           <Container maxWidth="md" component="section">
