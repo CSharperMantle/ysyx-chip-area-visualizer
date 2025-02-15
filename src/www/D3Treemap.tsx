@@ -17,7 +17,12 @@ function scaleAdjust(tree: ConvertedTreeNode, f: (x: number) => number): Convert
   }
 }
 
-const HoverSVGGroup = styled("g")(({ theme }) => ({
+const AnimatedSVGGroup = styled("g")(({ theme }) => ({
+  "&": {
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.standard,
+    }),
+  },
   "& > rect": {
     fill: theme.palette.mode === "dark" ? theme.palette.grey["800"] : theme.palette.grey["300"],
     transition: theme.transitions.create("fill", {
@@ -125,7 +130,7 @@ const D3Treemap = (props: {
           }
 
           return (
-            <HoverSVGGroup
+            <AnimatedSVGGroup
               key={i}
               transform={`translate(${x},${y})`}
               onClick={() => {
@@ -165,7 +170,7 @@ const D3Treemap = (props: {
                   </>
                 ) : null}
               </text>
-            </HoverSVGGroup>
+            </AnimatedSVGGroup>
           )
         })}
       </svg>
