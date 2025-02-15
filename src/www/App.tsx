@@ -375,13 +375,7 @@ const App = () => {
               </CenteringGrid>
             </Grid>
           </Container>
-          <Container
-            maxWidth="lg"
-            component="section"
-            sx={{
-              overflowX: "scroll",
-            }}
-          >
+          <Container maxWidth="lg" component="section">
             <Paper
               elevation={2}
               sx={{
