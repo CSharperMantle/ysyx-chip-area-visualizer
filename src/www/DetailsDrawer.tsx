@@ -1,6 +1,6 @@
 import { sortBy } from "lodash-es"
 
-import { useTheme } from "@mui/material"
+import { styled, useTheme } from "@mui/material"
 import Divider from "@mui/material/Divider"
 import Drawer from "@mui/material/Drawer"
 import Stack from "@mui/material/Stack"
@@ -17,6 +17,10 @@ import { ConvertedTreeNode } from "../convert"
 export type DetailsNode = ConvertedTreeNode & {
   path: string[]
 }
+
+const BreakAnywhereCode = styled("code")(() => ({
+  wordBreak: "break-all",
+}))
 
 const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose: () => void }) => {
   const theme = useTheme()
@@ -63,7 +67,7 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
                       }}
                     >
                       <TableCell component="th" scope="row">
-                        <code>{name}</code>
+                        <BreakAnywhereCode>{name}</BreakAnywhereCode>
                       </TableCell>
                       <TableCell>{count}</TableCell>
                     </TableRow>
@@ -90,10 +94,11 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
         </Typography>
         <Divider />
         <Typography variant="body1" component="p">
-          <strong>Name:</strong> <code>{props.node?.name ?? "?"}</code>
+          <strong>Name:</strong> <BreakAnywhereCode>{props.node?.name ?? "?"}</BreakAnywhereCode>
         </Typography>
         <Typography variant="body1" component="p">
-          <strong>Path:</strong> <code>{props.node?.path.join("/") ?? "?"}</code>
+          <strong>Path:</strong>{" "}
+          <BreakAnywhereCode>{props.node?.path.join("/") ?? "?"}</BreakAnywhereCode>
         </Typography>
         {areaDisplay}
         {coalescedPrimitivesList}
