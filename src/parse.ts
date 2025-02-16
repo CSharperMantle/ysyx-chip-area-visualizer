@@ -24,7 +24,7 @@ export class YosysJsonStatsParseError extends Error {
   }
 }
 
-const STAT_FILE_HEADER = "16. Printing statistics."
+const STAT_FILE_HEADER = "Printing statistics."
 const TOP_METANAME = "@Top@"
 
 export function parseTextStats(input: string): ParsedModule[] {
@@ -38,7 +38,7 @@ export function parseTextStats(input: string): ParsedModule[] {
   if (rawModules.length === 0) {
     return []
   }
-  if (rawModules[0].length !== 1 || rawModules[0][0] !== STAT_FILE_HEADER) {
+  if (rawModules[0].length !== 1 || !rawModules[0][0].trim().endsWith(STAT_FILE_HEADER)) {
     throw new TextStatsParseError("Bad header")
   }
   const parsedRawModules: (ParsedModule | string)[] = rawModules.slice(1).map((rawModule) => {
