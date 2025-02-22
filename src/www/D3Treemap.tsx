@@ -177,7 +177,7 @@ const D3Treemap = (props: {
         viewBox={`0 0 ${width} ${height}`}
         width="100%"
         style={{
-          fontSize: "1em",
+          fontSize: "0.8rem",
           fontFamily: theme.typography.fontFamily,
           borderWidth: "1px",
           borderStyle: "solid",

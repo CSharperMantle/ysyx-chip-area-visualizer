@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react"
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react"
 
 import DeleteIcon from "@mui/icons-material/Delete"
 import FileOpenIcon from "@mui/icons-material/FileOpen"
@@ -118,6 +118,28 @@ const App = () => {
 
   const [scaleFuncSel, setScaleFuncSel] = useState("none")
   const [scaleExp, setScaleExp] = useState(0.75)
+
+  const treemapPaperRef = useRef<HTMLDivElement>(null)
+  const [treemapWidth, setTreemapWidth] = useState(1280)
+  const [treemapHeight, setTreemapHeight] = useState(720)
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width: contentWidth } = entry.contentRect
+        const { paddingLeft, paddingRight } = getComputedStyle(entry.target)
+        const width = contentWidth - parseFloat(paddingLeft) - parseFloat(paddingRight)
+        setTreemapWidth(Math.round(width))
+        setTreemapHeight(Math.round((width * 9) / 16))
+      }
+    })
+    if (treemapPaperRef.current) {
+      resizeObserver.observe(treemapPaperRef.current)
+    }
+    return () => {
+      resizeObserver.disconnect()
+    }
+  }, [])
 
   const scaleFunc = useMemo(() => {
     let func: (x: number) => number
@@ -381,8 +403,14 @@ const App = () => {
               sx={{
                 padding: "0.5rem",
               }}
+              ref={treemapPaperRef}
             >
-              <D3Treemap data={treeData} scaleFunc={scaleFunc} width={1280} height={720} />
+              <D3Treemap
+                data={treeData}
+                scaleFunc={scaleFunc}
+                width={treemapWidth}
+                height={treemapHeight}
+              />
             </Paper>
           </Container>
           <Divider />
