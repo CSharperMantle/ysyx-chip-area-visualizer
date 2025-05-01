@@ -6,15 +6,13 @@ import tseslint from "typescript-eslint"
 import react from "eslint-plugin-react"
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  { ignores: ["dist", ".yarn", "**/.pnp*"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       ecmaVersion: 2020,
       globals: globals.browser,
-      tsconfigRootDir: import.meta.url,
     },
     plugins: {
       react: react,
@@ -22,14 +20,18 @@ export default tseslint.config(
       "react-refresh": reactRefresh,
     },
     rules: {
-      ...tseslint.configs.strictTypeChecked,
+      ...tseslint.configs.strictTypeChecked.rules,
       ...tseslint.configs.stylisticTypeChecked.rules,
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
+      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
   }
 )

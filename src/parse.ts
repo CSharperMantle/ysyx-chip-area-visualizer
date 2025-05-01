@@ -80,7 +80,7 @@ export function parseTextStats(input: string): ParsedModule[] {
       return "Multiple name or area definitions found"
     }
     const nameAreaDef = nameAreaDefs[0]
-    let obj: ParsedModule = {
+    const obj: ParsedModule = {
       name: nameAreaDef.name,
       top: nameAreaDef.top,
       area: parseFloat(nameAreaDef.area),

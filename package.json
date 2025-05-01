@@ -9,7 +9,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build-pages": "tsc -b && vite build --base=https://csmantle.top/ysyx-chip-area-visualizer/",
-    "lint": "eslint .",
+    "lint": "tsc --noEmit --checkJs --strict && eslint .",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -129,17 +129,17 @@ const D3Treemap = (props: {
   const width = props.width
   const height = props.height
 
-  const tiler = (node: NodeType, x0: number, y0: number, x1: number, y1: number) => {
-    d3.treemapSquarify(node, 0, 0, width, height)
-    for (const child of node.children ?? []) {
-      child.x0 = x0 + (child.x0 / width) * (x1 - x0)
-      child.x1 = x0 + (child.x1 / width) * (x1 - x0)
-      child.y0 = y0 + (child.y0 / height) * (y1 - y0)
-      child.y1 = y0 + (child.y1 / height) * (y1 - y0)
-    }
-  }
-
   const root = useMemo(() => {
+    const tiler = (node: NodeType, x0: number, y0: number, x1: number, y1: number) => {
+      d3.treemapSquarify(node, 0, 0, width, height)
+      for (const child of node.children ?? []) {
+        child.x0 = x0 + (child.x0 / width) * (x1 - x0)
+        child.x1 = x0 + (child.x1 / width) * (x1 - x0)
+        child.y0 = y0 + (child.y0 / height) * (y1 - y0)
+        child.y1 = y0 + (child.y1 / height) * (y1 - y0)
+      }
+    }
+
     const hierarchy = d3
       .hierarchy(data)
       .sum((d) => {
@@ -154,7 +154,7 @@ const D3Treemap = (props: {
       })
       .sort((a, b) => (a.value ?? 0) - (b.value ?? 0))
     return d3.treemap<ConvertedTreeNode>().size([width, height]).round(true).tile(tiler)(hierarchy)
-  }, [data])
+  }, [data, width, height])
 
   const xScale = useMemo(
     () => d3.scaleLinear().rangeRound([0, width]).domain([root.x0, root.x1]),

@@ -67,7 +67,7 @@ const LicenseText = () => {
         License
       </Typography>
       <Typography variant="body1" component="p">
-        Copyright &copy; 2025 Rong "Mantle" Bao {"<"}
+        Copyright &copy; 2025 Rong &ldquo;Mantle&rdquo; Bao {"<"}
         <Link href="mailto:webmaster@csmantle.top">webmaster@csmantle.top</Link>
         {">"}.
       </Typography>
@@ -186,9 +186,9 @@ const App = () => {
     } catch (err) {
       setErrored(true)
       console.error(err)
-      err = err instanceof Error ? err : new Error(`${err}`)
+      const errObj = err instanceof Error ? err : new Error(`${err}`)
       enqueueSnackbar({
-        message: `${err}`,
+        message: `${errObj}`,
         variant: "error",
       })
     }
@@ -223,7 +223,7 @@ const App = () => {
       })
       setOfflineReady(false)
     }
-  }, [offlineReady])
+  }, [offlineReady, enqueueSnackbar, setOfflineReady])
 
   return (
     <>
@@ -273,7 +273,8 @@ const App = () => {
                   my YSYX project
                 </Link>
                 , it can be generalized to any compatible Yosys <code>stat</code> outputs. So, the
-                "Y" in the name stands for both <strong>Y</strong>SYX and <strong>Y</strong>osys.
+                &ldquo;Y&rdquo; in the name stands for both <strong>Y</strong>SYX and{" "}
+                <strong>Y</strong>osys.
               </Typography>
               <Typography variant="body1" component="p">
                 Click the cells in the generated graph to display detailed information.
