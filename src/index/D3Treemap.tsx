@@ -3,7 +3,7 @@ import { useId, useMemo, useState } from "react"
 
 import { styled, useTheme } from "@mui/material"
 
-import { ConvertedTreeNode } from "../convert"
+import { ConvertedTreeNode } from "../parser/convert"
 import DetailsDrawer, { DetailsNode } from "./DetailsDrawer"
 
 type NodeType = d3.HierarchyRectangularNode<ConvertedTreeNode>
@@ -75,6 +75,10 @@ const TreemapNode = (props: {
       break
   }
 
+  const leafIdHref = !import.meta.env.SSR
+    ? new URL(`#${leafId}`, window.location.toString()).toString()
+    : `#${leafId}`
+
   return (
     <AnimatedSVGGroup
       transform={`translate(${x},${y})`}
@@ -89,7 +93,7 @@ const TreemapNode = (props: {
       </title>
       <rect id={leafId} stroke={strokeColor} width={rectWidth} height={rectHeight} />
       <clipPath id={clipId}>
-        <use xlinkHref={new URL(`#${leafId}`, location.toString()).toString()} />
+        <use xlinkHref={leafIdHref} />
       </clipPath>
       <text
         clipPath={clipId}

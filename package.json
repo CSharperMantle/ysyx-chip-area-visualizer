@@ -6,11 +6,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build-pages": "tsc -b && vite build --base=https://csmantle.top/ysyx-chip-area-visualizer/",
+    "dev": "vike dev",
+    "build": "tsc -b && vike build",
     "lint": "tsc --noEmit --checkJs --strict && eslint .",
-    "preview": "vite preview"
+    "preview": "yarn build && vike preview"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -44,6 +43,8 @@
     "sass-embedded": "^1.87.0",
     "typescript": "~5.7.3",
     "typescript-eslint": "^8.31.1",
+    "vike": "^0.4.229",
+    "vike-react": "^0.6.1",
     "vite": "^6.3.4",
     "vite-plugin-pwa": "^1.0.0",
     "workbox-window": "^7.3.0"

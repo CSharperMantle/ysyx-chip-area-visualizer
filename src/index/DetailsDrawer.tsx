@@ -12,7 +12,7 @@ import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
-import { ConvertedTreeNode } from "../convert"
+import { ConvertedTreeNode } from "../parser/convert"
 
 export type DetailsNode = ConvertedTreeNode & {
   path: string[]

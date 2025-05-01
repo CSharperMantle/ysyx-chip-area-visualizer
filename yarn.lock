@@ -1112,6 +1112,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@brillout/import@npm:^0.2.3, @brillout/import@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "@brillout/import@npm:0.2.6"
+  checksum: 10c0/ed3bccaafa659753dac334cc68cff0594ee9c41e123f99d6bd936fe1f1adfcace4f846d82015f9b2c5ad88a0ee3efd5b7c3d029fb7048df6dcdf76f84b0e128b
+  languageName: node
+  linkType: hard
+
+"@brillout/json-serializer@npm:^0.5.1, @brillout/json-serializer@npm:^0.5.15":
+  version: 0.5.15
+  resolution: "@brillout/json-serializer@npm:0.5.15"
+  checksum: 10c0/eb04c5f8f4d736a5494eb7b7e6ec8f80a913fd76bf462ff593c886e17e67729270a2aaaba17523d34a8b8b660ed9999ee18af04b6b77a9c68179ef4a83a00759
+  languageName: node
+  linkType: hard
+
+"@brillout/picocolors@npm:^1.0.11, @brillout/picocolors@npm:^1.0.26":
+  version: 1.0.26
+  resolution: "@brillout/picocolors@npm:1.0.26"
+  checksum: 10c0/418e991e9d8577fb9ecafcf2a8c0d8ebf6ae92389ccc07880d7ae7c72d97b220274e448b2761b34145c674d2ba302caa1657ec582fa2f2a394736c408c1c579b
+  languageName: node
+  linkType: hard
+
+"@brillout/require-shim@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@brillout/require-shim@npm:0.1.2"
+  checksum: 10c0/f9b065f726ec94520751f266290b3cfcca0ccea81319f6b3bb7ac0f8e3bc9af1039920aaeaaa08e37c6d6c8eef85a3e3d5bced4ca7af517b7aa4d935d18da2b1
+  languageName: node
+  linkType: hard
+
+"@brillout/vite-plugin-server-entry@npm:^0.7.8":
+  version: 0.7.8
+  resolution: "@brillout/vite-plugin-server-entry@npm:0.7.8"
+  dependencies:
+    "@brillout/import": "npm:^0.2.6"
+    "@brillout/picocolors": "npm:^1.0.26"
+  checksum: 10c0/ce871900d302526aafba2018ed2244b8bd33c8edd06c10fd972e3b1cba6f5106d931d5240a3626591db6e028e3f080218fb7eb4b95b6f9c1919c349a6c8b0f8b
+  languageName: node
+  linkType: hard
+
 "@bufbuild/protobuf@npm:^2.0.0":
   version: 2.2.3
   resolution: "@bufbuild/protobuf@npm:2.2.3"
@@ -1636,7 +1674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/sourcemap-codec@npm:^1.4.10, @jridgewell/sourcemap-codec@npm:^1.4.14":
+"@jridgewell/sourcemap-codec@npm:^1.4.10, @jridgewell/sourcemap-codec@npm:^1.4.14, @jridgewell/sourcemap-codec@npm:^1.5.0":
   version: 1.5.0
   resolution: "@jridgewell/sourcemap-codec@npm:1.5.0"
   checksum: 10c0/2eb864f276eb1096c3c11da3e9bb518f6d9fc0023c78344cdc037abadc725172c70314bdb360f2d4b7bffec7f5d657ce006816bc5d4ecb35e61b66132db00c18
@@ -1867,6 +1905,13 @@ __metadata:
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
   checksum: 10c0/5bd7576bb1b38a47a7fc7b51ac9f38748e772beebc56200450c4a817d712232b8f1d3ef70532c80840243c657d491cf6a6be1e3a214cff907645819fdc34aadd
+  languageName: node
+  linkType: hard
+
+"@polka/url@npm:^1.0.0-next.24":
+  version: 1.0.0-next.29
+  resolution: "@polka/url@npm:1.0.0-next.29"
+  checksum: 10c0/0d58e081844095cb029d3c19a659bfefd09d5d51a2f791bc61eba7ea826f13d6ee204a8a448c2f5a855c17df07b37517373ff916dd05801063c0568ae9937684
   languageName: node
   linkType: hard
 
@@ -2777,12 +2822,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.14.0, acorn@npm:^8.8.2":
-  version: 8.14.0
-  resolution: "acorn@npm:8.14.0"
+"acorn@npm:^8.0.0, acorn@npm:^8.14.0, acorn@npm:^8.8.2":
+  version: 8.14.1
+  resolution: "acorn@npm:8.14.1"
   bin:
     acorn: bin/acorn
-  checksum: 10c0/6d4ee461a7734b2f48836ee0fbb752903606e576cc100eb49340295129ca0b452f3ba91ddd4424a1d4406a98adfb2ebb6bd0ff4c49d7a0930c10e462719bbfd7
+  checksum: 10c0/dbd36c1ed1d2fa3550140000371fcf721578095b18777b85a79df231ca093b08edc6858d75d6e48c73e431c174dcf9214edbd7e6fa5911b93bd8abfa54e47123
   languageName: node
   linkType: hard
 
@@ -3081,6 +3126,13 @@ __metadata:
   version: 1.1.2
   resolution: "buffer-from@npm:1.1.2"
   checksum: 10c0/124fff9d66d691a86d3b062eff4663fe437a9d9ee4b47b1b9e97f5a5d14f6d5399345db80f796827be7c95e70a8e765dd404b7c3ff3b3324f98e9b0c8826cc34
+  languageName: node
+  linkType: hard
+
+"cac@npm:^6.0.0":
+  version: 6.7.14
+  resolution: "cac@npm:6.7.14"
+  checksum: 10c0/4ee06aaa7bab8981f0d54e5f5f9d4adcd64058e9697563ce336d8a3878ed018ee18ebe5359b2430eceae87e0758e62ea2019c3f52ae6e211b1bd2e133856cd10
   languageName: node
   linkType: hard
 
@@ -3899,6 +3951,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"es-module-lexer@npm:^1.0.0":
+  version: 1.7.0
+  resolution: "es-module-lexer@npm:1.7.0"
+  checksum: 10c0/4c935affcbfeba7fb4533e1da10fa8568043df1e3574b869385980de9e2d475ddc36769891936dbb07036edb3c3786a8b78ccf44964cd130dedc1f2c984b6c7b
+  languageName: node
+  linkType: hard
+
 "es-object-atoms@npm:^1.0.0, es-object-atoms@npm:^1.1.1":
   version: 1.1.1
   resolution: "es-object-atoms@npm:1.1.1"
@@ -3940,7 +3999,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.25.0":
+"esbuild@npm:>=0.19.0, esbuild@npm:^0.25.0":
   version: 0.25.3
   resolution: "esbuild@npm:0.25.3"
   dependencies:
@@ -5062,6 +5121,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isbot-fast@npm:1.2.0":
+  version: 1.2.0
+  resolution: "isbot-fast@npm:1.2.0"
+  checksum: 10c0/192a778ee5261c5555290472b154cfa8fee1b9bd8fbaa46c4632590d01fe21f8c04b412fceb42bf0c505021538c560758385542875888aaa46c41b229e786226
+  languageName: node
+  linkType: hard
+
 "isexe@npm:^2.0.0":
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
@@ -5202,7 +5268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.2.0, json5@npm:^2.2.3":
+"json5@npm:^2.0.0, json5@npm:^2.2.0, json5@npm:^2.2.3":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -5353,6 +5419,15 @@ __metadata:
   dependencies:
     sourcemap-codec: "npm:^1.4.8"
   checksum: 10c0/37f5e01a7e8b19a072091f0b45ff127cda676232d373ce2c551a162dd4053c575ec048b9cbb4587a1f03adb6c5d0fd0dd49e8ab070cd2c83a4992b2182d9cb56
+  languageName: node
+  linkType: hard
+
+"magic-string@npm:^0.30.17":
+  version: 0.30.17
+  resolution: "magic-string@npm:0.30.17"
+  dependencies:
+    "@jridgewell/sourcemap-codec": "npm:^1.5.0"
+  checksum: 10c0/16826e415d04b88378f200fe022b53e638e3838b9e496edda6c0e086d7753a44a6ed187adc72d19f3623810589bf139af1a315541cd6a26ae0771a0193eaf7b8
   languageName: node
   linkType: hard
 
@@ -5509,6 +5584,13 @@ __metadata:
   bin:
     mkdirp: dist/cjs/src/bin.js
   checksum: 10c0/9f2b975e9246351f5e3a40dcfac99fcd0baa31fbfab615fe059fb11e51f10e4803c63de1f384c54d656e4db31d000e4767e9ef076a22e12a641357602e31d57d
+  languageName: node
+  linkType: hard
+
+"mrmime@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "mrmime@npm:2.0.1"
+  checksum: 10c0/af05afd95af202fdd620422f976ad67dc18e6ee29beb03dd1ce950ea6ef664de378e44197246df4c7cdd73d47f2e7143a6e26e473084b9e4aa2095c0ad1e1761
   languageName: node
   linkType: hard
 
@@ -5938,6 +6020,21 @@ __metadata:
   version: 19.1.0
   resolution: "react-is@npm:19.1.0"
   checksum: 10c0/b6c6cadd172d5d39f66d493700d137a5545c294a62ce0f8ec793d59794c97d2bed6bad227626f16bd0e90004ed7fdc8ed662a004e6edcf5d2b7ecb6e3040ea6b
+  languageName: node
+  linkType: hard
+
+"react-streaming@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "react-streaming@npm:0.4.2"
+  dependencies:
+    "@brillout/import": "npm:^0.2.3"
+    "@brillout/json-serializer": "npm:^0.5.1"
+    "@brillout/picocolors": "npm:^1.0.11"
+    isbot-fast: "npm:1.2.0"
+  peerDependencies:
+    react: ">=19"
+    react-dom: ">=19"
+  checksum: 10c0/9771cbf826df7f74a27fe80c1c9a4d23aadb9863a50515f86d0fb0f6319f9592e960be94b8d85adaa733c1b873cd82621a76966b703e08ed77f361ec54e2415e
   languageName: node
   linkType: hard
 
@@ -6545,12 +6642,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.5, semver@npm:^7.6.0":
-  version: 7.7.0
-  resolution: "semver@npm:7.7.0"
+"semver@npm:^7.0.0, semver@npm:^7.3.5, semver@npm:^7.6.0":
+  version: 7.7.1
+  resolution: "semver@npm:7.7.1"
   bin:
     semver: bin/semver.js
-  checksum: 10c0/bcd1c03209b4be7d8ca86c976a0410beba7d4ec1d49d846a4be154b958db1ff5eaee50760c1d4f4070b19dee3236b8672d3e09642c53ea23740398bba2538a2d
+  checksum: 10c0/fd603a6fb9c399c6054015433051bdbe7b99a940a8fb44b85c2b524c4004b023d7928d47cb22154f8d054ea7ee8597f586605e05b52047f048278e4ac56ae958
   languageName: node
   linkType: hard
 
@@ -6671,6 +6768,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sirv@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "sirv@npm:3.0.1"
+  dependencies:
+    "@polka/url": "npm:^1.0.0-next.24"
+    mrmime: "npm:^2.0.0"
+    totalist: "npm:^3.0.0"
+  checksum: 10c0/7cf64b28daa69b15f77b38b0efdd02c007b72bb3ec5f107b208ebf59f01b174ef63a1db3aca16d2df925501831f4c209be6ece3302b98765919ef5088b45bf80
+  languageName: node
+  linkType: hard
+
 "smart-buffer@npm:^4.2.0":
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
@@ -6713,7 +6821,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:~0.5.20":
+"source-map-support@npm:^0.5.0, source-map-support@npm:~0.5.20":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:
@@ -7024,6 +7132,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"totalist@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "totalist@npm:3.0.1"
+  checksum: 10c0/4bb1fadb69c3edbef91c73ebef9d25b33bbf69afe1e37ce544d5f7d13854cda15e47132f3e0dc4cafe300ddb8578c77c50a65004d8b6e97e77934a69aa924863
+  languageName: node
+  linkType: hard
+
 "tr46@npm:^1.0.1":
   version: 1.0.1
   resolution: "tr46@npm:1.0.1"
@@ -7266,6 +7381,54 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vike-react@npm:^0.6.1":
+  version: 0.6.1
+  resolution: "vike-react@npm:0.6.1"
+  dependencies:
+    react-streaming: "npm:^0.4.2"
+  peerDependencies:
+    react: ">=19"
+    react-dom: ">=19"
+    vike: ">=0.4.182"
+  checksum: 10c0/e6d3ec67833049e136ee09fa9f28f248dabd8a6b08c79323697a96a5758d34759c2b5b86cf2d65d545650c0bd1713f2f774d0fde4463a4456162c973702771b0
+  languageName: node
+  linkType: hard
+
+"vike@npm:^0.4.229":
+  version: 0.4.229
+  resolution: "vike@npm:0.4.229"
+  dependencies:
+    "@brillout/import": "npm:^0.2.6"
+    "@brillout/json-serializer": "npm:^0.5.15"
+    "@brillout/picocolors": "npm:^1.0.26"
+    "@brillout/require-shim": "npm:^0.1.2"
+    "@brillout/vite-plugin-server-entry": "npm:^0.7.8"
+    acorn: "npm:^8.0.0"
+    cac: "npm:^6.0.0"
+    es-module-lexer: "npm:^1.0.0"
+    esbuild: "npm:>=0.19.0"
+    json5: "npm:^2.0.0"
+    magic-string: "npm:^0.30.17"
+    picomatch: "npm:^4.0.2"
+    semver: "npm:^7.0.0"
+    sirv: "npm:^3.0.1"
+    source-map-support: "npm:^0.5.0"
+    tinyglobby: "npm:^0.2.10"
+    vite: "npm:>=5.1.0"
+  peerDependencies:
+    react-streaming: ">=0.3.42"
+    vite: ">=5.1.0"
+  peerDependenciesMeta:
+    react-streaming:
+      optional: true
+    vite:
+      optional: true
+  bin:
+    vike: node/cli/bin.js
+  checksum: 10c0/fdf0c7b6f0f8ea7cd0705f0ff28e4ebd13bb21941b2a6696dc0bd2d0e8c1b36d972edaa68ff601f43036f5c1a732d7c62c1614138bc37626d91fc876eac294ec
+  languageName: node
+  linkType: hard
+
 "vite-plugin-pwa@npm:^1.0.0":
   version: 1.0.0
   resolution: "vite-plugin-pwa@npm:1.0.0"
@@ -7287,7 +7450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.3.4":
+"vite@npm:>=5.1.0, vite@npm:^6.3.4":
   version: 6.3.4
   resolution: "vite@npm:6.3.4"
   dependencies:
@@ -7736,6 +7899,8 @@ __metadata:
     toposort: "npm:^2.0.2"
     typescript: "npm:~5.7.3"
     typescript-eslint: "npm:^8.31.1"
+    vike: "npm:^0.4.229"
+    vike-react: "npm:^0.6.1"
     vite: "npm:^6.3.4"
     vite-plugin-pwa: "npm:^1.0.0"
     workbox-window: "npm:^7.3.0"

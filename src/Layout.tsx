@@ -1,16 +1,14 @@
 import { forwardRef, StrictMode } from "react"
-import { createRoot } from "react-dom/client"
 
 import Alert from "@mui/material/Alert"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { SnackbarProvider } from "notistack"
 
-import App from "./App.tsx"
 import theme from "./theme.ts"
 
 import "./fonts.scss"
-import "./index.scss"
+import "./Layout.scss"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, react/display-name
 const InfoAlert = forwardRef(({ message }: any, ref: any) => (
@@ -40,26 +38,30 @@ const SuccessAlert = forwardRef(({ message }: any, ref: any) => (
   </Alert>
 ))
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ThemeProvider theme={theme}>
-      <SnackbarProvider
-        Components={{
-          default: InfoAlert,
-          error: ErrorAlert,
-          warning: WarningAlert,
-          success: SuccessAlert,
-          info: InfoAlert,
-        }}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        autoHideDuration={3000}
-      >
-        <CssBaseline />
-        <App />
-      </SnackbarProvider>
-    </ThemeProvider>
-  </StrictMode>
-)
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <StrictMode>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider
+          Components={{
+            default: InfoAlert,
+            error: ErrorAlert,
+            warning: WarningAlert,
+            success: SuccessAlert,
+            info: InfoAlert,
+          }}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          autoHideDuration={3000}
+        >
+          <CssBaseline />
+          {children}
+        </SnackbarProvider>
+      </ThemeProvider>
+    </StrictMode>
+  )
+}
+
+export { Layout }

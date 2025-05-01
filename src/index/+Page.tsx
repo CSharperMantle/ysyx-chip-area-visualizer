@@ -28,8 +28,8 @@ import Typography from "@mui/material/Typography"
 import { useSnackbar } from "notistack"
 import { useRegisterSW } from "virtual:pwa-register/react"
 
-import { ConvertedTreeNode, convertParsedModules } from "../convert"
-import { ParsedModule, parseTextStats, parseYosysJsonStats } from "../parse"
+import { ConvertedTreeNode, convertParsedModules } from "../parser/convert"
+import { ParsedModule, parseTextStats, parseYosysJsonStats } from "../parser/parse"
 import D3Treemap from "./D3Treemap"
 
 const CenteringGrid = styled(Grid)(() => ({
@@ -101,7 +101,7 @@ const EmptyGraphRoot: ConvertedTreeNode = {
   name: "(empty)",
 }
 
-const App = () => {
+const Page = () => {
   const theme = useTheme()
 
   const [treeData, setTreeData] = useState<ConvertedTreeNode>(EmptyGraphRoot)
@@ -474,4 +474,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Page

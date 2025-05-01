@@ -32,13 +32,15 @@ jobs:
       - name: Lint
         run: yarn lint
       - name: Build
-        run: yarn build-pages
+        env:
+          VITE_CONFIG: "{'base':'https://csmantle.top/ysyx-chip-area-visualizer/'}"
+        run: yarn build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: "dist/client"
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
