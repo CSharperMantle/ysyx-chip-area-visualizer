@@ -75,9 +75,7 @@ const TreemapNode = (props: {
       break
   }
 
-  const leafIdHref = !import.meta.env.SSR
-    ? new URL(`#${leafId}`, window.location.toString()).toString()
-    : `#${leafId}`
+  const areaStr = area ? ` (Area: ${area})` : ""
 
   return (
     <AnimatedSVGGroup
@@ -87,13 +85,10 @@ const TreemapNode = (props: {
         props.setDetailsOpen(true)
       }}
     >
-      <title>
-        {getNamePath(props.node).join("/")}
-        {area ? ` (Area: ${area})` : null}
-      </title>
+      <title>{`${getNamePath(props.node).join("/")}${areaStr}`}</title>
       <rect id={leafId} stroke={strokeColor} width={rectWidth} height={rectHeight} />
       <clipPath id={clipId}>
-        <use xlinkHref={leafIdHref} />
+        <use xlinkHref={`#${leafId}`} />
       </clipPath>
       <text
         clipPath={clipId}
