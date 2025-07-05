@@ -13,7 +13,6 @@ const theme = createTheme({
   typography: {
     fontFamily: [
       '"Noto Sans Variable"',
-      '"Noto Sans SC Variable"',
       "system-ui",
       "Avenir",
       "Helvetica",
