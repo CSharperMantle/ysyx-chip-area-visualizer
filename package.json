@@ -15,14 +15,18 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fontsource-variable/noto-sans": "^5.2.7",
+    "@fontsource-variable/noto-sans-sc": "^5.2.6",
     "@fontsource-variable/source-code-pro": "^5.2.6",
     "@mui/icons-material": "^7.2.0",
     "@mui/material": "^7.2.0",
     "d3": "^7.9.0",
+    "i18next": "^25.3.1",
+    "i18next-browser-languagedetector": "^8.2.0",
     "lodash-es": "^4.17.21",
     "notistack": "^3.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-i18next": "^15.6.0",
     "toposort": "^2.0.2"
   },
   "devDependencies": {

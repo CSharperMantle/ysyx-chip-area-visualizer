@@ -1,0 +1,57 @@
+{
+  "app": {
+    "title": "Y Chip Area Visualizer",
+    "description": "This app parses TXT or JSON output of <0 /> <1 />  command, and visualizes the component area in a treemap. Originally developed for <2 />, it can be generalized to any compatible Yosys outputs.",
+    "clickInstructions": "Click the cells in the generated graph to display detailed information.",
+    "ysyxName": "the author's YSYX project"
+  },
+  "ui": {
+    "open": "Open...",
+    "graph": "Graph",
+    "clear": "Clear",
+    "fileName": "File name",
+    "fileType": "File type",
+    "scaleCorrection": "Scale correction",
+    "exponent": "Exponent",
+    "ok": "OK",
+    "cancel": "Cancel"
+  },
+  "fileTypes": {
+    "synthStatTxt": "synth_stat.txt",
+    "json": "JSON"
+  },
+  "scaleOptions": {
+    "none": "None",
+    "log10": "Log 10",
+    "ln": "Ln",
+    "exponential": "Exponential"
+  },
+  "details": {
+    "title": "Details",
+    "name": "Name:",
+    "path": "Path:",
+    "area": "Area:",
+    "primitive": "Primitive",
+    "count": "Count",
+    "none": "(none)"
+  },
+  "howItWorks": {
+    "title": "How does it work?",
+    "description": "All parsing is done locally in the browser, and no data is sent to any server. We use <0 /> for visualization, and <1 /> for DOM manipulation. The animations are powered by <2 /> in SVG, without using third-party animation libraries. Aside from its primary functionalities, this app can also serve as an example of writing modern visualizations that are both declarative and beautiful.",
+    "sourceCode": "The source code for this app is available at <0 />."
+  },
+  "license": {
+    "title": "License"
+  },
+  "dialog": {
+    "updateTitle": "Apply updates?",
+    "updateDescription": "A new version of this app is available. Refresh to update?"
+  },
+  "notifications": {
+    "serviceWorkerError": "Service worker registration failed: {{error}}. Offline cache will not work.",
+    "offlineReady": "App is ready for offline use.",
+    "fetchError": "Failed to fetch input file content.",
+    "invalidFileType": "Invalid file type: {{fileType}}"
+  },
+  "empty": "(empty)"
+}

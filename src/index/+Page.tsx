@@ -1,4 +1,5 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
+import { Trans, useTranslation } from "react-i18next"
 
 import DeleteIcon from "@mui/icons-material/Delete"
 import FileOpenIcon from "@mui/icons-material/FileOpen"
@@ -31,6 +32,7 @@ import { useRegisterSW } from "virtual:pwa-register/react"
 import { ConvertedTreeNode, convertParsedModules } from "../parser/convert"
 import { ParsedModule, parseTextStats, parseYosysJsonStats } from "../parser/parse"
 import D3Treemap from "./D3Treemap"
+import LanguageSwitcher from "./LanguageSwitcher"
 
 const CenteringGrid = styled(Grid)(() => ({
   display: "flex",
@@ -41,19 +43,18 @@ const CenteringGrid = styled(Grid)(() => ({
 const UpdateDialog = (props: { open: boolean; onConfirm: () => void; onCancel: () => void }) => {
   const titleId = useId()
   const descriptionId = useId()
+  const { t } = useTranslation()
 
   return (
     <Dialog open={props.open} aria-labelledby={titleId} aria-describedby={descriptionId}>
-      <DialogTitle id={titleId}>Apply updates?</DialogTitle>
+      <DialogTitle id={titleId}>{t("dialog.updateTitle")}</DialogTitle>
       <DialogContent>
-        <DialogContentText id={descriptionId}>
-          A new version of this app is available. Refresh to update?
-        </DialogContentText>
+        <DialogContentText id={descriptionId}>{t("dialog.updateDescription")}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onCancel}>Cancel</Button>
+        <Button onClick={props.onCancel}>{t("ui.cancel")}</Button>
         <Button onClick={props.onConfirm} autoFocus>
-          OK
+          {t("ui.ok")}
         </Button>
       </DialogActions>
     </Dialog>
@@ -61,10 +62,12 @@ const UpdateDialog = (props: { open: boolean; onConfirm: () => void; onCancel: (
 }
 
 const LicenseText = () => {
+  const { t } = useTranslation()
+
   return (
     <Stack direction="column" spacing={2}>
       <Typography variant="h5" component="h2">
-        License
+        {t("license.title")}
       </Typography>
       <Typography variant="body1" component="p">
         Copyright &copy; 2025 Rong &ldquo;Mantle&rdquo; Bao {"<"}
@@ -94,17 +97,34 @@ const LicenseText = () => {
   )
 }
 
-const EmptyGraphRoot: ConvertedTreeNode = {
-  type: "leaf",
-  count: 0,
-  size: 0,
-  name: "(empty)",
-}
-
 const Page = () => {
   const theme = useTheme()
+  const { t } = useTranslation()
 
-  const [treeData, setTreeData] = useState<ConvertedTreeNode>(EmptyGraphRoot)
+  const createEmptyGraphRoot = useCallback(
+    (): ConvertedTreeNode => ({
+      type: "leaf",
+      count: 0,
+      size: 0,
+      name: t("empty"),
+    }),
+    [t]
+  )
+
+  const [treeData, setTreeData] = useState<ConvertedTreeNode>(createEmptyGraphRoot())
+
+  useEffect(() => {
+    setTreeData((prev) => {
+      if (
+        prev.name === t("empty") ||
+        prev.name === t("empty", { lng: "en" }) ||
+        prev.name === t("empty", { lng: "zh" })
+      ) {
+        return createEmptyGraphRoot()
+      }
+      return prev
+    })
+  }, [t, createEmptyGraphRoot])
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -167,7 +187,7 @@ const Page = () => {
     try {
       const inputText = await inputRef.current?.files?.item(0)?.text()
       if (!inputText) {
-        throw new Error("Failed to fetch input file content.")
+        throw new Error(t("notifications.fetchError"))
       }
       let parsed: ParsedModule[]
       switch (fileType) {
@@ -178,7 +198,7 @@ const Page = () => {
           parsed = parseYosysJsonStats(inputText)
           break
         default:
-          throw new Error(`Invalid file type: ${fileType}`)
+          throw new Error(t("notifications.invalidFileType", { fileType }))
       }
       const converted = convertParsedModules(parsed, true)
       setTreeData(converted)
@@ -198,7 +218,7 @@ const Page = () => {
     setAttempted(false)
     setErrored(false)
     setFileName("")
-    setTreeData(EmptyGraphRoot)
+    setTreeData(createEmptyGraphRoot())
     if (inputRef.current) {
       inputRef.current.value = ""
     }
@@ -210,7 +230,7 @@ const Page = () => {
     updateServiceWorker,
   } = useRegisterSW({
     onRegisterError(e) {
-      enqueueSnackbar(`Service worker registration failed: ${e}. Offline cache will not work.`, {
+      enqueueSnackbar(t("notifications.serviceWorkerError", { error: e }), {
         variant: "warning",
       })
     },
@@ -218,12 +238,12 @@ const Page = () => {
 
   useEffect(() => {
     if (offlineReady) {
-      enqueueSnackbar("App is ready for offline use.", {
+      enqueueSnackbar(t("notifications.offlineReady"), {
         variant: "info",
       })
       setOfflineReady(false)
     }
-  }, [offlineReady, enqueueSnackbar, setOfflineReady])
+  }, [offlineReady, enqueueSnackbar, setOfflineReady, t])
 
   return (
     <>
@@ -241,43 +261,54 @@ const Page = () => {
             alignItems: "center",
           }}
         >
-          <Typography
-            variant="h4"
-            component="h1"
-            sx={{
-              textAlign: "center",
-            }}
-          >
-            Y Chip Area Visualizer
-          </Typography>
+          <Stack direction="row" spacing={2} sx={{ alignItems: "center", width: "100%" }}>
+            <Typography
+              variant="h4"
+              component="h1"
+              sx={{
+                textAlign: "center",
+                flexGrow: 1,
+              }}
+            >
+              {t("app.title")}
+            </Typography>
+            <LanguageSwitcher />
+          </Stack>
           <Container maxWidth="md" component="section">
             <Stack direction="column" spacing={2}>
               <Typography variant="body1" component="p">
-                This app parses TXT or JSON output of{" "}
-                <Link href="https://github.com/YosysHQ/yosys" target="_blank" rel="noopener">
-                  Yosys
-                </Link>{" "}
-                <Link
-                  href="https://yosyshq.readthedocs.io/projects/yosys/en/stable/cmd/stat.html"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <code>stat</code>
-                </Link>{" "}
-                command, and visualizes the component area in a treemap. Originally developed for{" "}
-                <Link
-                  href="https://github.com/CSharperMantle/ics2023"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  my YSYX project
-                </Link>
-                , it can be generalized to any compatible Yosys <code>stat</code> outputs. So, the
-                &ldquo;Y&rdquo; in the name stands for both <strong>Y</strong>SYX and{" "}
-                <strong>Y</strong>osys.
+                <Trans
+                  i18nKey="app.description"
+                  components={[
+                    <Link
+                      key={0}
+                      href="https://github.com/YosysHQ/yosys"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Yosys
+                    </Link>,
+                    <Link
+                      key={1}
+                      href="https://yosyshq.readthedocs.io/projects/yosys/en/stable/cmd/stat.html"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <code>stat</code>
+                    </Link>,
+                    <Link
+                      key={2}
+                      href="https://github.com/CSharperMantle/ics2023"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {t("app.ysyxName")}
+                    </Link>,
+                  ]}
+                />
               </Typography>
               <Typography variant="body1" component="p">
-                Click the cells in the generated graph to display detailed information.
+                {t("app.clickInstructions")}
               </Typography>
             </Stack>
           </Container>
@@ -294,7 +325,7 @@ const Page = () => {
               }}
             >
               <CenteringGrid size={1}>
-                <Tooltip title="Open">
+                <Tooltip title={t("ui.open")}>
                   <IconButton size="large" onClick={() => inputRef.current?.click()}>
                     <FileOpenIcon />
                     <input
@@ -315,7 +346,7 @@ const Page = () => {
               <CenteringGrid size={3}>
                 <TextField
                   fullWidth
-                  label="File name"
+                  label={t("ui.fileName")}
                   value={fileName}
                   error={attempted && errored}
                   slotProps={{
@@ -331,7 +362,7 @@ const Page = () => {
               </CenteringGrid>
               <CenteringGrid size={2}>
                 <FormControl fullWidth variant="filled">
-                  <InputLabel id={fileTypeInputLabelId}>File type</InputLabel>
+                  <InputLabel id={fileTypeInputLabelId}>{t("ui.fileType")}</InputLabel>
                   <Select
                     labelId={fileTypeInputLabelId}
                     value={fileType}
@@ -339,20 +370,20 @@ const Page = () => {
                       setFileType(ev.target.value)
                     }}
                   >
-                    <MenuItem value={"txt"}>synth_stat.txt</MenuItem>
-                    <MenuItem value={"json"}>JSON</MenuItem>
+                    <MenuItem value={"txt"}>{t("fileTypes.synthStatTxt")}</MenuItem>
+                    <MenuItem value={"json"}>{t("fileTypes.json")}</MenuItem>
                   </Select>
                 </FormControl>
               </CenteringGrid>
               <CenteringGrid size={1}>
-                <Tooltip title="Graph">
+                <Tooltip title={t("ui.graph")}>
                   <IconButton size="large" color="primary" onClick={drawGraph}>
                     <PieChartIcon />
                   </IconButton>
                 </Tooltip>
               </CenteringGrid>
               <CenteringGrid size={1}>
-                <Tooltip title="Clear">
+                <Tooltip title={t("ui.clear")}>
                   <IconButton size="large" onClick={clearGraph}>
                     <DeleteIcon />
                   </IconButton>
@@ -360,7 +391,7 @@ const Page = () => {
               </CenteringGrid>
               <CenteringGrid size={{ xs: 2, md: 4 }}>
                 <FormControl fullWidth variant="filled">
-                  <InputLabel id={scaleCorrectionLabelId}>Scale correction</InputLabel>
+                  <InputLabel id={scaleCorrectionLabelId}>{t("ui.scaleCorrection")}</InputLabel>
                   <Select
                     labelId={scaleCorrectionLabelId}
                     value={scaleFuncSel}
@@ -368,17 +399,17 @@ const Page = () => {
                       setScaleFuncSel(ev.target.value)
                     }}
                   >
-                    <MenuItem value={"none"}>None</MenuItem>
-                    <MenuItem value={"log10"}>Log 10</MenuItem>
-                    <MenuItem value={"ln"}>Ln</MenuItem>
-                    <MenuItem value={"exp"}>Exponential</MenuItem>
+                    <MenuItem value={"none"}>{t("scaleOptions.none")}</MenuItem>
+                    <MenuItem value={"log10"}>{t("scaleOptions.log10")}</MenuItem>
+                    <MenuItem value={"ln"}>{t("scaleOptions.ln")}</MenuItem>
+                    <MenuItem value={"exp"}>{t("scaleOptions.exponential")}</MenuItem>
                   </Select>
                 </FormControl>
               </CenteringGrid>
               <CenteringGrid size={{ xs: 2, md: 4 }}>
                 <TextField
                   fullWidth
-                  label="Exponent"
+                  label={t("ui.exponent")}
                   type="number"
                   variant="filled"
                   value={scaleExp}
@@ -418,40 +449,43 @@ const Page = () => {
           <Container maxWidth="md" component="section">
             <Stack direction="column" spacing={2}>
               <Typography variant="h5" component="h2">
-                How does it work?
+                {t("howItWorks.title")}
               </Typography>
               <Typography variant="body1" component="p">
-                All parsing is done locally in the browser, and no data is sent to any server. We
-                use{" "}
-                <Link href="https://d3js.org/" target="_blank" rel="noopener">
-                  D3.js
-                </Link>{" "}
-                for visualization, and{" "}
-                <Link href="https://react.dev/" target="_blank" rel="noopener">
-                  React
-                </Link>{" "}
-                for DOM manipulation. The animations are powered by{" "}
-                <Link
-                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  CSS transitions
-                </Link>{" "}
-                in SVG, without using third-party animation libraries. Aside from its primary
-                functionalities, this app can also serve as an example of writing modern
-                visualizations that are both declarative and beautiful.
+                <Trans
+                  i18nKey="howItWorks.description"
+                  components={[
+                    <Link key={0} href="https://d3js.org/" target="_blank" rel="noopener">
+                      D3.js
+                    </Link>,
+                    <Link key={1} href="https://react.dev/" target="_blank" rel="noopener">
+                      React
+                    </Link>,
+                    <Link
+                      key={2}
+                      href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      CSS transitions
+                    </Link>,
+                  ]}
+                />
               </Typography>
               <Typography variant="body1" component="p">
-                The source code for this app is available at{" "}
-                <Link
-                  href="https://github.com/CSharperMantle/ysyx-chip-area-visualizer"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  https://github.com/CSharperMantle/ysyx-chip-area-visualizer
-                </Link>
-                .
+                <Trans
+                  i18nKey="howItWorks.sourceCode"
+                  components={[
+                    <Link
+                      key={0}
+                      href="https://github.com/CSharperMantle/ysyx-chip-area-visualizer"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      https://github.com/CSharperMantle/ysyx-chip-area-visualizer
+                    </Link>,
+                  ]}
+                />
               </Typography>
             </Stack>
           </Container>

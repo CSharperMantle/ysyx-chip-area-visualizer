@@ -5,8 +5,10 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { SnackbarProvider } from "notistack"
 
+import "./i18n"
 import theme from "./theme.ts"
 
+import "@fontsource-variable/noto-sans-sc/wght.css"
 import "./fonts.scss"
 import "./Layout.scss"
 

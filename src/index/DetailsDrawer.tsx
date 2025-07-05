@@ -1,4 +1,5 @@
 import { sortBy } from "lodash-es"
+import { useTranslation } from "react-i18next"
 
 import { styled, useTheme } from "@mui/material"
 import Divider from "@mui/material/Divider"
@@ -24,11 +25,12 @@ const BreakAnywhereCode = styled("code")(() => ({
 
 const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose: () => void }) => {
   const theme = useTheme()
+  const { t } = useTranslation()
 
   const areaDisplay =
     props.node && props.node.type !== "internal" ? (
       <Typography variant="body1" component="p">
-        <strong>Area:</strong> <code>{props.node.size}</code>
+        <strong>{t("details.area")}</strong> <code>{props.node.size}</code>
       </Typography>
     ) : null
   const coalescedPrimitivesList =
@@ -43,10 +45,10 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
             <TableHead>
               <TableRow>
                 <TableCell>
-                  <strong>Primitive</strong>
+                  <strong>{t("details.primitive")}</strong>
                 </TableCell>
                 <TableCell>
-                  <strong>Count</strong>
+                  <strong>{t("details.count")}</strong>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -54,7 +56,7 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
               {props.node.coalescedPrimitives.length === 0 ? (
                 <TableRow key="none" sx={{ border: 0 }}>
                   <TableCell colSpan={3} align="center">
-                    (none)
+                    {t("details.none")}
                   </TableCell>
                 </TableRow>
               ) : (
@@ -90,14 +92,15 @@ const DetailsDrawer = (props: { open: boolean; node: DetailsNode | null; onClose
         sx={{ width: 300, height: "100%", padding: theme.spacing(2) }}
       >
         <Typography variant="h4" component="h2">
-          Details
+          {t("details.title")}
         </Typography>
         <Divider />
         <Typography variant="body1" component="p">
-          <strong>Name:</strong> <BreakAnywhereCode>{props.node?.name ?? "?"}</BreakAnywhereCode>
+          <strong>{t("details.name")}</strong>{" "}
+          <BreakAnywhereCode>{props.node?.name ?? "?"}</BreakAnywhereCode>
         </Typography>
         <Typography variant="body1" component="p">
-          <strong>Path:</strong>{" "}
+          <strong>{t("details.path")}</strong>{" "}
           <BreakAnywhereCode>{props.node?.path.join("/") ?? "?"}</BreakAnywhereCode>
         </Typography>
         {areaDisplay}
