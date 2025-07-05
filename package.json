@@ -41,7 +41,7 @@
     "prettier": "^3.6.2",
     "rollup": "^4.44.2",
     "sass-embedded": "^1.89.2",
-    "typescript": "~5.7.3",
+    "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vike": "^0.4.235",
     "vike-react": "^0.6.4",
