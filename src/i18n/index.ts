@@ -19,6 +19,8 @@ const LANGUAGES = [
   { code: "zh", name: "中文" },
 ] as const
 
+const isBrowser = typeof window !== "undefined"
+
 const i18nConfig = {
   resources: RESOURCES,
   lng: "en",
@@ -27,18 +29,23 @@ const i18nConfig = {
   interpolation: {
     escapeValue: false,
   },
-  detection: {
-    order: ["localStorage", "navigator", "htmlTag"],
-    caches: ["localStorage"],
-  },
+  detection: isBrowser
+    ? {
+        order: ["localStorage", "navigator", "htmlTag"],
+        caches: ["localStorage"],
+      }
+    : {
+        order: ["htmlTag"],
+        caches: [],
+      },
 }
 
-i18n.use(LanguageDetector).use(initReactI18next).init(i18nConfig)
+if (isBrowser) {
+  i18n.use(LanguageDetector)
+}
+
+i18n.use(initReactI18next).init(i18nConfig)
 
 export default i18n
 
 export { LANGUAGES, RESOURCES }
-
-export { Trans, useTranslation } from "./hooks"
-export { I18nProvider } from "./I18nProvider"
-

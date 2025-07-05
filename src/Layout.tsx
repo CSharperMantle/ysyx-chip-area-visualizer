@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { SnackbarProvider } from "notistack"
 
-import { I18nProvider } from "./i18n/I18nProvider"
+import "./i18n"
 import theme from "./theme.ts"
 
 import "@fontsource-variable/noto-sans-sc/wght.css"
@@ -43,27 +43,25 @@ const SuccessAlert = forwardRef(({ message }: any, ref: any) => (
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <StrictMode>
-      <I18nProvider>
-        <ThemeProvider theme={theme}>
-          <SnackbarProvider
-            Components={{
-              default: InfoAlert,
-              error: ErrorAlert,
-              warning: WarningAlert,
-              success: SuccessAlert,
-              info: InfoAlert,
-            }}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            autoHideDuration={3000}
-          >
-            <CssBaseline />
-            {children}
-          </SnackbarProvider>
-        </ThemeProvider>
-      </I18nProvider>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider
+          Components={{
+            default: InfoAlert,
+            error: ErrorAlert,
+            warning: WarningAlert,
+            success: SuccessAlert,
+            info: InfoAlert,
+          }}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          autoHideDuration={3000}
+        >
+          <CssBaseline />
+          {children}
+        </SnackbarProvider>
+      </ThemeProvider>
     </StrictMode>
   )
 }
