@@ -45,7 +45,7 @@
     "typescript-eslint": "^8.35.1",
     "vike": "^0.4.235",
     "vike-react": "^0.6.4",
-    "vite": "^7.0.2",
+    "vite": "^7.0.7",
     "vite-plugin-pwa": "^1.0.1",
     "workbox-window": "^7.3.0"
   },
